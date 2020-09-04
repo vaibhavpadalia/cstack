@@ -22,7 +22,9 @@ const App = () => {
     callApi = async () => {
       const url = "http://192.168.0.107:4400/api/v1/getExchangeRates";
       let exchangeData = await callRemoteMethodAsync(url);
-      setLabelAndValue(exchangeData.result);
+      if (exchangeData?.responseCode == 200) {
+        setLabelAndValue(exchangeData.result);
+      }
     };
     callApi();
   }, []);
